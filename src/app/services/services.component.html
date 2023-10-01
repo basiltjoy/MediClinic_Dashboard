@@ -1,0 +1,77 @@
+
+<div class="datatable-title">
+    <h2>
+        Our Doctors</h2>
+</div>
+<div class="horizontal-inputs col-md-12">
+    <div *ngFor="let column of columns" class="input-container popup_box col-md-2">
+            <input type="text" class="mb-2 form-control" placeholder="{{ column.name }} Search"
+            (input)="filterColumn($event, column.prop)">
+    </div>
+</div>
+
+<div class="col-md-13">
+    <ngx-datatable #table class="material" [rows]="filteredData" [columns]="columns" [columnMode]="'force'"
+        [headerHeight]="40" [footerHeight]="40" [rowHeight]="'auto'" [limit]="pageSize" (page)="onPageChange($event)"
+        [scrollbarH]="true">
+        <ngx-datatable-column name="Doctor ID" prop="doctor_id" class="col-md-2 col-sm-6"></ngx-datatable-column>
+        <ngx-datatable-column name="Name" prop="name" class="col-md-3 col-sm-6"></ngx-datatable-column>
+        <ngx-datatable-column name="Mail" prop="email_id" class="col-md-2 col-sm-6"></ngx-datatable-column>
+        <ngx-datatable-column name="Mobile" prop="mobile_no" class="col-md-2 col-sm-6"></ngx-datatable-column>
+        <ngx-datatable-column name="Qualification" prop="qualification" class="col-md-2 col-sm-6">
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Speciality" prop="speciality" class="col-md-2 col-sm-6">
+            <ng-template ngx-datatable-cell-template let-value="value">
+                <div [ngClass]="{
+              'custom-style': value == 'ENT',
+              'custom-style2': value == 'Gynaceologist',
+              'custom-style3': value == 'General Medicine',
+              'custom-style4': value =='Oncology',
+              'custom-style5': value =='Neurology'
+            }">{{ value }}</div>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Action" prop="action" class="col-md-2 col-sm-6">
+            <ng-template ngx-datatable-cell-template let-row="row">
+                <button class="btn btn-warning btn-sm" (click)="appontmentRqstClicked(row)">Request an
+                    appointment</button>
+            </ng-template>
+        </ngx-datatable-column>
+    </ngx-datatable>
+
+    <!-- Modal -->
+    <div class="modal black_overlay" tabindex="-1" role="dialog" [ngClass]="{'d-block': modalOpen}"
+    *ngIf="modalOpen">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="web-appt__header">
+                    <h1>Request an Appointment</h1>
+                    <hr class="mx-2">
+                </div>
+
+                <div class="modal-body row">
+                    <div class="col-sm-8">
+                        <p>To fill out this form, you’ll need:</p>
+                        <p> &#129170; &nbsp;&nbsp;Your insurance card.</p>
+                        <p> &#129170; &nbsp;&nbsp;Contact information for your referring provider (Optional)</p>
+                        <p> &#129170; &nbsp;&nbsp;To be 18 or older.</p>
+                    </div>
+                    <div class="col-sm-4 mt-4">
+                        <img src="assets/appointment.png" class="img-fluid" />
+                    </div>
+                    <p>This should take about 10 minutes to complete. Your appointment will be processed in 1 to 2
+                        business days.</p>
+                    <p>If this is an emergency, please call 911 or go to your nearest emergency department.</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" (click)="appointmentConfirm()">Confirm</button>
+                    <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

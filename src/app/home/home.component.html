@@ -1,0 +1,281 @@
+<section style="position: top;">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a href="index.html">
+                <img src="assets/MediClinic-Logo.png" width="150" height="70">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarList"
+                aria-controls="navbarList" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarList">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="#home" (click)="setActiveTab('home')" role="tab">Home</a>
+                    </li>
+                    <li class="nav-item" role="presentation" *ngIf="activeTab=='home'">
+                        <a class="nav-link" href="#departments" role="tab">Departments</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="#doctors" (click)="setActiveTab('doctor')" role="tab">Find a
+                            Doctor</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="#review" (click)="setActiveTab('review')" role="tab">Reviews</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="#informations" (click)="setActiveTab('informations')" role="tab">Informations</a>
+                    </li>
+                </ul>
+                <div class="d-flex" *ngIf="activeTab == 'home' ">
+                    <button class="btn btn-info btn-sm text-light-emphasis fs-6 fst-italic"
+                        (click)="appointment()">Request an
+                        appointment</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div *ngIf="spinnerHandle">
+        <app-spinner (childEvent)="receiveChildEvent($event)"></app-spinner>
+    </div>
+
+    <div class="card" *ngIf="activeTab=='home'">
+        <section class="about bg-light pt-0">
+            <div
+                style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZFoLWl30eAFrrqfWVyvXr7suHU7Ol6wzXQV6C8h9b9Q&s); background-size: cover; position: relative;">
+                <div class="container text-center">
+                    <h2 class="text-uppercase lined lined-center">Welcome to <span class="text-primary">MEDI</span>
+                        Clinic</h2>
+                    <b class="text-muted">MEDI Clinic is a nonprofit multi-speciality academic medical center that
+                        integrates clinical and hospital care with research and education. In addition to offering
+                        appointment scheduling and information for its patients.</b>
+                </div>
+
+                <div class="container mt-4">
+                    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" data-bs-interval="2000">
+                                <div class="d-flex justify-content-center">
+                                    <img src="assets/carousel1.jpg" class="d-block w-50" alt="No preview">
+                                </div>
+                            </div>
+                            <div class="carousel-item" data-bs-interval="2000">
+                                <div class="d-flex justify-content-center">
+                                    <img src="assets/carousel2.jpg" class="d-block w-50" alt="No preview">
+                                </div>
+                            </div>
+                            <div class="carousel-item" data-bs-interval="2500">
+                                <div class="d-flex justify-content-center">
+                                    <img src="assets/carousel3.jpg" class="d-block w-50" alt="No preview">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container mt-5">
+            <h1 class="text-center mb-4"><b>Why Choose Us ?</b></h1>
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <div class="col-lg-5 d-none d-lg-block mx-3"><img class="img-fluid" src="assets/patientCentered.png"
+                            alt="No preview"></div>
+                    <h2 class="h5">Patient-centered care</h2>
+                    <p class="text-muted mb-0">We don’t just care for your health conditions. We care about you.
+                        That means <a href="#" style="font-weight: 500; text-decoration: none;">our providers</a> take
+                        the time to listen to
+                        what’s important to you before recommending next steps.</p>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="col-lg-6 d-none d-lg-block mx-3"><img class="img-fluid"
+                            src="assets/NationalRecognition2.png" alt="No preview"></div>
+                    <h2 class="h5">National recognition</h2>
+                    <p class="text-muted mb-0">Cleveland Clinic is recognized in the U.S. and throughout the
+                        world for its expertise and care.</p>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="col-lg-5 d-none d-lg-block mx-3"><img class="img-fluid"
+                            src="assets/CollaborativeProviders.png" alt="No preview"></div>
+                    <h2 class="h5">Collaborative providers</h2>
+                    <p class="text-muted mb-0">You’ll get care from board-certified and fellowship trained
+                        experts who work together to create a treatment plan just for you. Only the highest standards
+                        ensure <a href="#" style="font-weight: 500; text-decoration: none;">excellent outcomes</a>.</p>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="col-lg-5 d-none d-lg-block mx-3"><img class="img-fluid" src="assets/Innovation.png"
+                            alt="No preview"></div>
+                    <h2 class="h5">Innovation and research</h2>
+                    <p class="text-muted mb-0">We’re focused on today — and tomorrow. Our focus on <a href="#"
+                            style="font-weight: 500;">research</a> and offering the latest options means you can find a
+                        wide range of <a href="#" style="font-weight: 500; text-decoration: none;">clinical trials</a>
+                        and other care that you
+                        can’t find elsewhere.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="our_department_area" id="departments">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="section_title text-center mb-55">
+                            <h1 class="text-center mb-3"><b>Our Departments</b></h1>
+                            <p class="text-light-emphasis">Through our 25+ specialities, we provide in-depth expertise
+                                in the spectrum of advance medical and surgical interventions. Our specialties are
+                                integrated to provide a seamless experience. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-4 col-md-6 col-lg-4 mb-3">
+                        <div class="single_department">
+                            <div class="department_thumb mb-2">
+                                <img src="assets/EyeCare.png" alt="Eye Care" class="img-fluid">
+                            </div>
+                            <h2 class="h5">Eye Care</h2>
+                            <p class="text-muted mb-0">Start with safe eyes and finish it with safe eyes
+                                <a href="#" style="font-weight: 500; text-decoration: none;">Learn More</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6 col-lg-4 mb-3">
+                        <div class="single_department">
+                            <div class="department_thumb mb-2">
+                                <img src="assets/PhysicalTherapy.png" alt="Physio Care" class="img-fluid">
+                            </div>
+                            <h2 class="h5">Physio Therapy Care</h2>
+                            <p class="text-muted mb-0">
+                                Finding the right specialist for your orthopedic needs just got easier<br>
+                                <a href="#" style="font-weight: 500; text-decoration: none;">Learn More</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6 col-lg-4 mb-3">
+                        <div class="single_department">
+                            <div class="department_thumb mb-2">
+                                <img src="assets/dc3.png" alt="Diagnostic Test" class="img-fluid">
+                            </div>
+                            <h2 class="h5">Dental Care</h2>
+                            <p class="text-muted mb-0">
+                                A dentist gets to the root of the problem.<br>
+                                <a href="#" style="font-weight: 500; text-decoration: none;">Learn More</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6 col-lg-4 mb-3">
+                        <div class="single_department">
+                            <div class="department_thumb mb-2">
+                                <img src="assets/DiagnosticTest.png" alt="Diagnostic Test" class="img-fluid">
+                            </div>
+                            <h2 class="h5">Diagnostic Test</h2>
+                            <p class="text-muted mb-0">
+                                If we can make the correct diagnosis, the healing can begin.<br>
+                                <a href="#" style="font-weight: 500; text-decoration: none;">Learn More</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6 col-lg-4 mb-3">
+                        <div class="single_department">
+                            <div class="department_thumb mb-2">
+                                <img src="assets/SkinSurgery.png" alt="Skin Surgery" class="img-fluid">
+                            </div>
+                            <h2 class="h5">Skin Surgery</h2>
+                            <p class="text-muted mb-0">
+                                Younger Looking skin Start here.<br>
+                                <a href="#" style="font-weight: 500; text-decoration: none;">Learn More</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6 col-lg-4">
+                        <div class="single_department">
+                            <div class="department_thumb mb-2">
+                                <img src="assets/SurgeryService.png" alt="Surgery Service" class="img-fluid">
+                            </div>
+                            <h2 class="h5">Surgery Service</h2>
+                            <p class="text-muted mb-0">
+                                Benefiting you is our priority.<br>
+                                <a href="#" style="font-weight: 500; text-decoration: none;">Learn More</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid mb-5" id="vision-container">
+            <div class="row" id="banner-row">
+                <div class="col-md-6 mt-5" id="vision-col">
+                    <ul>
+                        <h3 class="text-center"><b>Vision</b></h3>
+                        <li>
+                            <div class="text-wrap">
+                                Excellence in patient care with professional integrity and team work.
+                            </div>
+                        </li>
+                        <hr>
+                    </ul>
+
+                    <ul>
+                        <h3 class="text-center"><b>Mission</b></h3>
+                        <li>
+                            <div class="text-wrap">
+                                To ensure comprehensive medical care through continuous improvement in quality service.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 bg-success">
+                    <h3 class="text-center text-white">
+                        <b><span class="underline">Our Values</span></b>
+                    </h3>
+
+                    <p class="text-white"><b>Respect:</b> We treat everyone in our community, including patients, their
+                        families and
+                        colleagues, with dignity.<br><br>
+
+                        <b>Comprehensive care:</b> We provide comprehensive care by the concurrent prevention and
+                        management of multiple physical and emotional health problems of a patient over a period of time
+                        in relationship to family, life events and environment.<br><br>
+
+                        <b>Quality &amp; Safety:</b> We ensure the highest standards and excellent outcomes through
+                        effective interactions, decision-making, and actions.<br><br>
+
+                        <b>Integrity</b>: We adhere to the highest standards of professionalism, ethics and
+                        personal responsibility, worthy of the trust our patients place in us.<br><br>
+
+                        <b>Teamwork:</b> We believe our effectiveness is built on collective team work with open
+                        communication, dignity and mutual respect.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+<section *ngIf="activeTab=='doctor'">
+    <app-services></app-services>
+</section>
+
+<section *ngIf="activeTab=='review'">
+    <app-review></app-review>
+</section>
+
+<section *ngIf="activeTab=='informations'">
+    <app-api-data></app-api-data>
+</section>

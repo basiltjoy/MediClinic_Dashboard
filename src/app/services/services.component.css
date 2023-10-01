@@ -1,0 +1,105 @@
+.custom-style {
+    font-weight: bold;
+    color: green;
+}
+
+.custom-style2 {
+    font-weight: bold;
+    color: rgb(101, 206, 230);
+}
+
+.custom-style3 {
+    font-weight: bold;
+    color: rgb(144 106 142);
+}
+
+.custom-style4 {
+    font-weight: bold;
+    color: rgb(40 112 120);
+}
+
+.custom-style5 {
+    font-weight: bold;
+    color: darkgoldenrod;
+}
+
+.datatable-title {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 24px;
+    background-color: #e9ece5;
+    padding-bottom: 1px;
+}
+
+/* search */
+.horizontal-inputs {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.input-container {
+    margin-right: -35px;
+    margin-bottom: 10px;
+}
+.popup_box input {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    white-space: normal !important;
+    max-width: 200px;
+}
+
+
+/* Modal */
+.black_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal-dialog {
+    max-width: 80%;
+    margin: 0 auto;      /* align the modal to center horizontally */
+    position: relative;  /* align the modal to center vertically */
+    top: 50%;
+    transform: translateY(-50%);
+}
+.modal-content {
+    padding: 20px;
+}
+.modal-body {
+    padding: 10px;
+}
+
+/* header underline*/
+.web-appt__header hr {
+    text-align: left;
+    width: 40px;
+    height: 5px;
+    background-color: #0094ea;
+    border: none;
+    opacity: initial;
+}
+hr {
+    box-sizing: initial;
+    height: 0;
+    overflow: visible;
+}
+
+/*Modal Image*/
+.img-fluid {
+    height: 120px;
+}
+
+

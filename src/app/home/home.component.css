@@ -1,0 +1,65 @@
+ /*           Image        */
+ .our_department_area {
+     background: #F5FBFF;
+     padding-top: 80px;
+     padding-bottom: 90px;
+ }
+
+ .our_department_area .single_department .department_thumb {
+     overflow: hidden;
+     border-top-right-radius: 5px;
+     border-top-left-radius: 5px;
+ }
+
+ *,
+ ::after,
+ ::before {
+     box-sizing: border-box;
+ }
+
+ /* Image animation*/
+ .single_department .department_thumb {
+     position: relative;
+     overflow: hidden;
+     transition: transform 0.3s, box-shadow 0.3s;
+ }
+
+ .single_department .department_thumb::before {
+     content: "";
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background: rgba(0, 0, 0, 0.5);
+     opacity: 0;
+     transition: opacity 0.3s;
+ }
+
+ .single_department:hover .department_thumb::before {
+     opacity: 1;
+ }
+
+ .single_department:hover .department_thumb {
+     transform: scale(1.05);
+     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+ }
+
+
+ /*    VISION, MISSION  */
+ ul {
+     list-style-type: none;
+     padding: 0;
+     text-align: center;
+ }
+ .text-wrap {
+     width: 100%;
+     max-width: 20rem;
+     margin: 0 auto;
+     text-align: center;
+ }
+
+ .underline {
+     text-decoration: underline;
+     text-decoration-color: white;
+ }

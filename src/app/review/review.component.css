@@ -1,0 +1,28 @@
+.review-title {
+    background-color: #e9ece5;
+    text-align: center;
+    margin: 20px 0;
+    font-size: 24px;
+    padding-bottom: 1px;
+}
+
+/*shade Overlay on image*/
+.overlay {
+    height: 90vh;
+    width: 100%;
+    color: white;
+    font: bold 7.5em/2em monospace;
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    background: linear-gradient(to top, #3204fdba, #9907facc), url(https://websitedemos.net/dental-02/wp-content/uploads/sites/40/2020/07/CTA-section-bg.jpg) no-repeat top center;
+    padding-right: 20px;
+}
+h6 {
+    line-height: 5.25em;
+}
+.element{
+    padding-top: 37px;
+}
+
+
