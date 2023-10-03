@@ -47,9 +47,9 @@
       
     </div>
 
-    <div class="row" *ngIf="chosenRegion">
-      <div class="col-md-6" id="banner-col" *ngIf="chosenRegion!='Select any region'">
-        <canvas width="400" height="500" id="canvas2" #canvas2>{{chart2}}</canvas>
+    <div class="row" >
+      <div class="col-md-6" id="banner-col" *ngIf="chosenRegion" >
+        <canvas width="400" height="500" id="canvas2" #canvas2 *ngIf="chosenRegion!='Select any region'">{{chart2}}</canvas>
       </div>
     </div>
   </div>
