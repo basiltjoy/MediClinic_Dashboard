@@ -71,6 +71,7 @@ export class ApiDataComponent {
       }
     }, ((error: HttpErrorResponse) => {
       this.errorMsg= error.error
+      console.log(this.errorMsg)
       window.confirm(error.message)
       this.alertPopup.nativeElement.classList.add('show');
       this.spinnerHandle = false;
