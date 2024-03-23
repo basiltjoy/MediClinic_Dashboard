@@ -1,6 +1,14 @@
 <div class="container">
 
   <div class="container-fluid" style="padding-top: 15px;">
+
+    <div class="d-flex justify-content-center w-100">
+      <div #alertPopup class="alert alert-warning alert-dismissible fade text-center mx-4" role="alert">
+          {{this.errorMsg}}
+      </div>
+  </div>
+
+  
     <div class="container text-center ">
       <b class="text-muted">This data provides the number of students trained through different programs in
         collaboration with National Institutions, segmented by rural and urban areas

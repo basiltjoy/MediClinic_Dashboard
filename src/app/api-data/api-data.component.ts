@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { catchError, forkJoin } from 'rxjs';
 import Chart from 'chart.js/auto';
 import { ChildActivationStart } from '@angular/router';
@@ -25,8 +25,8 @@ export class ApiDataComponent {
   practitioners: any;
   chart2: any;
   nationWide: boolean = false;
-
-
+  @ViewChild('alertPopup') alertPopup!: ElementRef;
+  errorMsg: string = '';
   constructor(private http: HttpClient) {
 
   }
@@ -60,16 +60,21 @@ export class ApiDataComponent {
     //   this.extractData()
     //   // this.practitionersData()
     // });
-
+  
     this.http.get<any>('https://www.healthit.gov/data/open-api?source=workforce-programs-trained.csv', {
     }).subscribe(data => {
       if (data) {
-        console.log('subscribe method',data);
+        console.log('subscribe method', data);
         this.workforce_trained = data
         this.spinnerHandle = false;
         this.extractData()
       }
-    });
+    }, ((error: HttpErrorResponse) => {
+      this.errorMsg= error.error
+      window.confirm(error.message)
+      this.alertPopup.nativeElement.classList.add('show');
+      this.spinnerHandle = false;
+    }));
 
   }
 
@@ -98,8 +103,8 @@ export class ApiDataComponent {
         ],
       },
       options: {
-        maintainAspectRatio: false, // Make the chart responsive
-        responsive: true, // Enable responsiveness
+        maintainAspectRatio: false,
+        responsive: true,
         scales: {
           y: {
             beginAtZero: true,
@@ -148,9 +153,9 @@ export class ApiDataComponent {
 
       });
     }
-    else{
+    else {
       this.chart2.destroy();
-      this.chosenRegion= '';
+      this.chosenRegion = '';
     }
   }
 
