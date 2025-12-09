@@ -78,7 +78,6 @@ export class ApiDataComponent {
     }));
 
   }
-
   extractData() { //chart 1
     let AreaGeography: any = [];
     this.workForce = this.workforce_trained.filter((coins: any) => coins.region == 'National');
@@ -128,12 +127,11 @@ export class ApiDataComponent {
         },
       },
     });
-
   }
+  
 
-  nationWideData() {
-    this.nationWide = !this.nationWide;
-    if (this.nationWide) {
+  nationWideData(checked: any) {
+    if (checked) {
       this.spinnerHandle = true;
 
       forkJoin(this.sources[1]).pipe(
@@ -160,7 +158,7 @@ export class ApiDataComponent {
     }
   }
 
-  practitionersData() {   //chart 2
+  practitionersData() {
     this.regions = [...new Set(
       this.Health_Care_Practitioners.map((item: any) =>
         item.region
@@ -179,59 +177,82 @@ export class ApiDataComponent {
       regionFilter.map((item: any) =>
         this.practitioners = item
       )
-      console.log('practitioners', this.practitioners);
+      //console.log('practitioners', this.practitioners);
 
-      this.chart2 = new Chart('canvas2', {
-        type: 'line',
-        data: {
-          labels: ['Nurse Practitioners', 'Physician Assistants', 'Physicians',
-            'Primary Care Nurse Practitioners', 'Primary Care Physician Assistants',
-            'Primary Care Physicians', 'Primary Care Providers'],
-          datasets: [{
-            label: 'Our Strength',
-            data: [this.practitioners.all_nurse_practitioners, this.practitioners.all_physician_assistants, this.practitioners.all_physicians,
-            this.practitioners.all_primary_care_nurse_practitioners, this.practitioners.all_primary_care_physician_assistants,
-            this.practitioners.all_primary_care_physicians, this.practitioners.all_primary_care_providers],
-            borderColor: 'rgb(51, 103, 103)',
-            backgroundColor: 'rgba(255, 0, 0, 0.1)',
-            fill: true,
-          }]
-        },
-        options: {
-          maintainAspectRatio: false,
-          responsive: true,
-          scales: {
-            y: {
-              beginAtZero: true,
-              ticks: {
-                color: 'black',
-              },
-            },
-            x: {
-              ticks: {
-                color: 'black',
-              },
-            }
-          },
-          plugins: {
-            legend: {
-              labels: {
-                color: 'black',
-              },
-            },
-          },
-        },
-      });
+      if(this.practitioners){
+        this.createPractitionerChart();
+      }
     }
     // console.log(this.Health_Care_Practitioners);
   }
+  createPractitionerChart() { ///chart2
+    // if (this.chart2) {
+    //   this.chart2.destroy();
+    // }
+    setTimeout(() =>{
+      this.chart2 = new Chart('canvas2', {
+        type: 'line',
+        data: {
+          labels: [
+            'Nurse Practitioners',
+            'Physician Assistants',
+            'Physicians',
+            'Primary Care NP',
+            'Primary Care PA',
+            'Primary Care Physicians',
+            'Primary Care Providers'
+          ],
+          datasets: [
+            {
+              label: 'Practitioners',
+              data: [
+                +this.practitioners.all_nurse_practitioners,
+                +this.practitioners.all_physician_assistants,
+                +this.practitioners.all_physicians,
+                +this.practitioners.all_primary_care_nurse_practitioners,
+                +this.practitioners.all_primary_care_physician_assistants,
+                +this.practitioners.all_primary_care_physicians,
+                +this.practitioners.all_primary_care_providers
+              ],
+              borderColor: '#4B77A9',
+              backgroundColor: 'rgba(75, 119, 169, 0.2)',
+              fill: true,
+              tension: 0.4
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+
+          plugins: {
+            legend: {
+              labels: {
+                color: '#111',
+                font: { size: 14 }
+              }
+            }
+          },
+
+          scales: {
+            x: {
+              ticks: { color: '#111' }
+            },
+            y: {
+              beginAtZero: true,
+              ticks: { color: '#111' }
+            }
+          }
+        }
+      });
+    }, 200)
+  }
+
 
   areaSelection() {
     // console.log(this.chosenRegion);
     this.practitionersData()
   }
-
-
 
 
 

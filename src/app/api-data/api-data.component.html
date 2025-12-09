@@ -1,24 +1,22 @@
 <div class="container">
 
   <div class="container-fluid" style="padding-top: 15px;">
-
     <div class="d-flex justify-content-center w-100">
       <div #alertPopup class="alert alert-warning alert-dismissible fade text-center mx-4" role="alert">
           {{this.errorMsg}}
       </div>
-  </div>
+    </div>
 
-  
     <div class="container text-center ">
       <b class="text-muted">This data provides the number of students trained through different programs in
         collaboration with National Institutions, segmented by rural and urban areas
         for each state. The data is through September, 2013: the duration of the program.</b>
     </div>
+
     <div class="row">
       <div class="col-md-6 bg-dark mb-3 mt-3" id="banner-col">
         <canvas width="500" height="300" id="canvas" #canvas>{{chart}}</canvas>
       </div>
-
     </div>
   </div>
 
@@ -31,38 +29,34 @@
   </div>
   
 
-  <div class="container-fluid  mb-3">
-    <div class="form-check chart2heading">
-      <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" (click)="nationWideData()"
-        [(ngModel)]="nationWide">
-      <label class="form-check-label" for="flexCheckIndeterminate">
-        Nation wide Medi Clinic strength 
+  <div class="container-fluid mb-3 p-3">
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox" id="nationCheck"
+        [(ngModel)]="nationWide" (change)="nationWideData(nationWide)">
+      <label class="form-check-label fw-semibold" for="nationCheck">
+        Nation-wide MediClinic Strength
       </label>
-      <a href="" class="disabled-link mx-5" *ngIf="!nationWide">
-        <marquee direction="right"> Click the checkbox !</marquee>
-      </a>
-    </div>
-    <div class="row">
-      <div class="container d-flex align-items-center justify-content-center">
-        <div class="col-md-10">
-          <select class="form-select mt-3 mb-3 form-select-sm" aria-label="Default select example" (click)="areaSelection()"
-            [(ngModel)]="chosenRegion" [disabled]="!nationWide">
-            <option selected>Select any region</option>
-            <option *ngFor="let item of regions">{{item}}</option>
-          </select>
-        </div>
+
+      <div *ngIf="!nationWide" class="small text-muted mt-1">
+        Click the checkbox to see regional details
       </div>
-      
     </div>
 
-    <div class="row" >
-      <div class="col-md-6" id="banner-col" *ngIf="chosenRegion" >
-        <canvas width="400" height="500" id="canvas2" #canvas2 *ngIf="chosenRegion!='Select any region'">{{chart2}}</canvas>
+    <div class="mb-4 col-md-6 px-0">
+      <label class="form-label small fw-semibold">Choose Region</label>
+      <select class="form-select mx-2 form-select-sm w-50" [(ngModel)]="chosenRegion" (change)="areaSelection()" [disabled]="!nationWide"
+        [ngClass]="{'dashboard-select': nationWide}">
+        <!-- <option [ngValue]="null" selected disabled>Select any region</option> -->
+        <option *ngFor="let item of regions" [value]="item">{{item}}</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <div class="col-md-7">
+        <canvas id="canvas2" #canvas2 *ngIf="chosenRegion && chosenRegion!='Select any region'"></canvas>
       </div>
     </div>
   </div>
-
-
 </div>
 
 

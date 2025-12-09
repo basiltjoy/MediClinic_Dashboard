@@ -31,3 +31,24 @@ hr.style-hr {
     overflow: hidden;
     margin-left: 1em;
 }
+
+/* Custom select with shadow, rounded corners */
+.dashboard-select {
+  border-radius: 0.5rem;
+  padding-left: 2.5rem; /* space for icon */
+  transition: all 0.3s ease;
+}
+.dashboard-select:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+/* Focus state */
+.dashboard-select:focus {
+  box-shadow: 0 0 0 0.25rem rgba(75, 119, 169, 0.25);
+  outline: none;
+}
+
+/* Chart */
+#canvas2{
+    height: 235px;
+}
